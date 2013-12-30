@@ -1,0 +1,39 @@
+<html>
+<head>
+  <script src="matrix_processor.js"></script>
+  <script src="rpoly.js"></script>
+  <script src="polymovial.js"></script>
+</head>
+<body>
+<p>
+Move your mouse pointer around over the grey area. Every 5 seconds, the corresponding polynomial
+of degree 5 will be computed and prediction will be made if the mouse pointer would have crossed / touched
+the red area on the right. All output can be found in the console.
+</p>
+
+<table width="100%" height="100%">
+  <tr>
+    <td width="90%" height="100%">
+      <div id="polymovial-example" style="width:100%;height:90%;background-color:#EEEEEE">
+      </div>
+    </td>
+    <td width="10%">
+      <div id="banner" style="width:90%%;height:30%;background-color:#EE0000">
+      </div>
+    </td>
+  <tr>
+</table>
+
+<script language="JavaScript">
+  var polymovial = new polymovial('polymovial-example', 1024, 5, 10, matf);
+  window.setInterval(function(polymovial) {
+    console.log("Polynomial (past 5 seconds):");
+
+    var poly = polymovial.obtainPolynomial();
+    console.log(poly);
+    console.log("Mouse pointer would have crossed / touched the banner:");
+    console.log(polymovial.checkIntersection('banner', poly) ? "yes" : "no");
+  }, 5000, polymovial);
+</script>
+</body>
+</html>
